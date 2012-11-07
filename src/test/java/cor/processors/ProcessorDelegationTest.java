@@ -1,17 +1,15 @@
 package cor.processors;
 
+import static org.fest.assertions.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.fest.assertions.Assertions.assertThat;
 
 public class ProcessorDelegationTest {
     private MockProcessor firstProcessor;
     private MockProcessor secondProcessor;
     private int valueToProcess;
     private int returnedValue;
-    private static final int IRRELEVANT = 4123;
 
     @Before
     public void Init() {
@@ -20,8 +18,8 @@ public class ProcessorDelegationTest {
         secondProcessor.willElect = true;
         firstProcessor = new MockProcessor(secondProcessor);
         firstProcessor.willElect = false;
-        valueToProcess = IRRELEVANT;
-        secondProcessor.returnValue = IRRELEVANT;
+        valueToProcess = Any.intValue();
+        secondProcessor.returnValue = Any.intValue();
 
         // Common Trigger
         returnedValue = firstProcessor.process(valueToProcess);
@@ -42,4 +40,3 @@ public class ProcessorDelegationTest {
         assertThat(returnedValue).isEqualTo(secondProcessor.returnValue);
     }
 }
-
