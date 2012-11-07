@@ -12,15 +12,12 @@ public abstract class Processor {
         nextProcessor = aProcessor;
     }
 
-    public int Process(int value) {
-        int returnValue = 0;
-
+    public int process(int value) {
         if(shouldProcess(value)) {
-            returnValue = processThis(value);
+            return processThis(value);
         } else {
-            returnValue = nextProcessor.Process(value);
+            return nextProcessor.process(value);
         }
-        return returnValue;
     }
 
     protected abstract boolean shouldProcess(int value);
