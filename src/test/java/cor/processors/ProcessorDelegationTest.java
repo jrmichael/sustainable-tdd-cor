@@ -1,21 +1,56 @@
 package cor.processors;
 
-import org.junit.Ignore;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.Test;
 
 public class ProcessorDelegationTest {
-    @Test
-    @Ignore
-    public void DelegationHappensWhenItShould() {
-    }
 
-    @Test
-    @Ignore
-    public void DelegationHappensWithUnchangedParameter() {
-    }
+	private Processor delegate = mock(Processor.class);;
+	private Processor processor = alwaysDelegatingProcessor(delegate);
+	private static final int VALUE = 5;
 
-    @Test
-    @Ignore
-    public void DelegationHappensWithUnchangedReturn() {
-    }
+	@Test
+	public void DelegationHappensWhenItShould() {
+
+		processor.process(VALUE);
+
+		verify(delegate).process(anyInt());
+	}
+
+	@Test
+	public void DelegationHappensWithUnchangedParameter() {
+
+		processor.process(VALUE );
+
+		verify(delegate).process(VALUE );
+	}
+
+	@Test
+	public void DelegationHappensWithUnchangedReturn() {
+		int returnedByDelegate = 0;
+		when(delegate.process(VALUE)).thenReturn(returnedByDelegate);
+
+		assertThat(processor.process(VALUE)).isEqualTo(returnedByDelegate);
+
+	}
+
+	private Processor alwaysDelegatingProcessor(Processor delegate) {
+		Processor processor = new Processor(delegate) {
+			@Override
+			protected boolean isItMine(int value) {
+				return false;
+			}
+
+			@Override
+			protected int doProcess(int value) {
+				return 0;
+			}
+		};
+		return processor;
+	}
 }
