@@ -20,6 +20,6 @@ public class TerminalProcessorTest {
     }
 
     private TerminalProcessor terminalProcessor() {
-        return new TerminalProcessor(null);
+        return new TerminalProcessor();
     }
 }

@@ -11,7 +11,7 @@ public class TerminalProcessor extends Processor {
         throw new IllegalArgumentException();
     }
 
-    protected TerminalProcessor(Processor aProcessor) {
-        super(aProcessor);
+    protected TerminalProcessor() {
+        super(null);
     }
 }
