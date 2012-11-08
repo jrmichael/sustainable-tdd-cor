@@ -6,6 +6,8 @@ import static org.fest.assertions.Assertions.*;
 
 import org.junit.Test;
 
+import util.Any;
+
 public class TerminalProcessorTest {
 
     @Test

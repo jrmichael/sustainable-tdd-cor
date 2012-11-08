@@ -5,6 +5,8 @@ import static org.fest.assertions.Assertions.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import util.Any;
+
 public class ProcessorDelegationTest {
     private MockProcessor firstProcessor;
     private MockProcessor secondProcessor;

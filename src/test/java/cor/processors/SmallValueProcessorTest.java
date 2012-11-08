@@ -4,6 +4,8 @@ import static org.fest.assertions.Assertions.*;
 
 import org.junit.Test;
 
+import util.Any;
+
 public class SmallValueProcessorTest {
 
     private SmallValueProcessor smallValueProcessor = new SmallValueProcessor(null);
